@@ -1,0 +1,11 @@
+# OS
+.DS_Store
+
+# Development
+.idea
+.vscode
+.notes
+
+# Log files
+*.log
+*.txt
