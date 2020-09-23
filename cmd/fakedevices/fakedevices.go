@@ -1,7 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+
+	"github.com/istherepie/fakedevices/pkg/cli"
+)
 
 func main() {
-	fmt.Println("Hello Fakedevices!")
+	config, err := cli.CreateConfiguration()
+
+	if err != nil {
+		fmt.Printf("Application could not start - %v\n", err)
+		os.Exit(1)
+	}
 }
