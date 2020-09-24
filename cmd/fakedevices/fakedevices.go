@@ -7,6 +7,7 @@ import (
 
 	"github.com/istherepie/fakedevices/pkg/cli"
 	"github.com/istherepie/fakedevices/pkg/devices"
+	"github.com/istherepie/fakedevices/pkg/mqtt"
 )
 
 func main() {
@@ -37,4 +38,11 @@ func main() {
 		fmt.Println(device)
 	}
 
+	var mqttBrokerAddr string = "tcp://localhost:1883"
+
+	client := mqtt.CreateClientConnection(mqttBrokerAddr)
+
+	msg := "This is my message"
+	token := client.Publish("steffen/test/me", 0, false, msg)
+	token.Wait()
 }
