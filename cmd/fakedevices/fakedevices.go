@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"sync"
 
 	"github.com/istherepie/fakedevices/pkg/cli"
 	"github.com/istherepie/fakedevices/pkg/devices"
@@ -34,15 +35,28 @@ func main() {
 		os.Exit(1)
 	}
 
-	for _, device := range importedDevices {
-		fmt.Println(device)
-	}
-
 	var mqttBrokerAddr string = "tcp://localhost:1883"
 
 	client := mqtt.CreateClientConnection(mqttBrokerAddr)
 
-	msg := "This is my message"
-	token := client.Publish("steffen/test/me", 0, false, msg)
-	token.Wait()
+	// Start fake devices
+
+	var wg sync.WaitGroup
+
+	for _, device := range importedDevices {
+		fmt.Printf("# Enabling device: %v\n", device.Name)
+
+		switch device.Type {
+		case "meassure":
+			wg.Add(1)
+			go devices.MeassuringDevice(device, client, &wg)
+		case "switch":
+			wg.Add(1)
+			go devices.SwitchDevice(device, client, &wg)
+		default:
+			fmt.Printf("Device: %v is of unknown type (%v)", device.Name, device.Type)
+		}
+	}
+
+	wg.Wait()
 }
