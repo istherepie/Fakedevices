@@ -1,13 +1,13 @@
 My Lamp:
   topic: /fake/lamp/1
   maker: Phillips
-  type: gauge
+  type: meassure
   interval: 9
 
 Other Lamp:
   topic: /fake/lamp/2
   maker: Ikea
-  type: gauge
+  type: meassure
   interval: 6
 
 Power Switch:
