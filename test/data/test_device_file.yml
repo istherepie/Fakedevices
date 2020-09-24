@@ -1,0 +1,29 @@
+My Lamp:
+  topic: /fake/lamp/1
+  maker: Phillips
+  type: gauge
+  interval: 9
+
+Other Lamp:
+  topic: /fake/lamp/2
+  maker: Ikea
+  type: gauge
+  interval: 6
+
+Power Switch:
+    topic: /fake/switch/1
+    maker: Clas
+    type: switch
+    interval: 11
+
+Light Switch:
+    topic: /fake/switch/2
+    maker: China
+    type: switch
+    interval: 26
+
+Fake Switch:
+    stopic: /fake/switch/3
+    smaker: SSSSSS
+    stype: switch
+    sinterval: 26
