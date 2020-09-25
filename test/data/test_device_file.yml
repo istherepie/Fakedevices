@@ -22,6 +22,12 @@ Light Switch:
     type: switch
     interval: 26
 
+Unknown Device:
+    topic: /unknown/dev/1
+    maker: XXX
+    type: unknown
+    interval: 4
+
 Fake Switch:
     stopic: /fake/switch/3
     smaker: SSSSSS
