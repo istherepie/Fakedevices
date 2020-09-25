@@ -35,9 +35,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	var mqttBrokerAddr string = "tcp://localhost:1883"
-
-	client := mqtt.CreateClientConnection(mqttBrokerAddr)
+	client := mqtt.CreateClientConnection(config.BrokerAddr())
 
 	// Start fake devices
 
