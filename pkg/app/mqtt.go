@@ -1,7 +1,8 @@
-package mqtt
+package app
 
 import (
 	"fmt"
+	"sync"
 
 	MQTT "github.com/eclipse/paho.mqtt.golang"
 )
@@ -10,7 +11,8 @@ import (
 var clientID string = "fakedevicesApp"
 
 // CreateClientConnection connects to a MQTT (e.g. Mosquitto) service and returns a client struct
-func CreateClientConnection(brokerAddr string) MQTT.Client {
+// TODO: Rather than using a sync.WaitGroup, a `OnConnect` handler should be passed in... soon...
+func CreateClientConnection(brokerAddr string, wg *sync.WaitGroup) (MQTT.Client, error) {
 
 	// Configure
 	opts := MQTT.NewClientOptions()
@@ -20,14 +22,16 @@ func CreateClientConnection(brokerAddr string) MQTT.Client {
 	// On connect handler
 	opts.OnConnect = func(c MQTT.Client) {
 		fmt.Println("Connected to the service")
+		wg.Done()
 	}
 
 	// Client
 	client := MQTT.NewClient(opts)
 
 	if token := client.Connect(); token.Wait() && token.Error() != nil {
-		panic(token.Error())
+		wg.Done()
+		return client, token.Error()
 	}
 
-	return client
+	return client, nil
 }

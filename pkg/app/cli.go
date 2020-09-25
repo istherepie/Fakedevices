@@ -1,4 +1,4 @@
-package cli
+package app
 
 import (
 	"errors"
@@ -13,6 +13,7 @@ type Config struct {
 	Port       int
 }
 
+// BrokerAddr generates a connection string from hostname/port
 func (c Config) BrokerAddr() string {
 	return fmt.Sprintf("tcp://%v:%d", c.Hostname, c.Port)
 }
