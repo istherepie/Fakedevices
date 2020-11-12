@@ -28,7 +28,7 @@ func SwitchDevice(device Device, client MQTT.Client, wg *sync.WaitGroup) {
 	}
 
 	for {
-
+		time.Sleep(time.Duration(device.Interval) * time.Millisecond)
 		chance := rand.Intn(10)
 
 		if chance < 5 {
@@ -46,7 +46,5 @@ func SwitchDevice(device Device, client MQTT.Client, wg *sync.WaitGroup) {
 
 		token := client.Publish(device.Topic, 0, false, msg)
 		token.Wait()
-
-		time.Sleep(time.Duration(device.Interval) * time.Millisecond)
 	}
 }
