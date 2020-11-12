@@ -39,6 +39,6 @@ func MeassuringDevice(device Device, client MQTT.Client, wg *sync.WaitGroup) {
 
 		token := client.Publish(device.Topic, 0, false, msg)
 		token.Wait()
-		time.Sleep(time.Duration(device.Interval) * time.Second)
+		time.Sleep(time.Duration(device.Interval) * time.Millisecond)
 	}
 }

@@ -2,34 +2,34 @@ My Lamp:
   topic: /fake/lamp/1
   maker: Phillips
   type: meassure
-  interval: 9
+  interval: 4500
 
 Other Lamp:
   topic: /fake/lamp/2
   maker: Ikea
   type: meassure
-  interval: 6
+  interval: 1000
 
 Power Switch:
     topic: /fake/switch/1
     maker: Clas
     type: switch
-    interval: 11
+    interval: 11000
 
 Light Switch:
     topic: /fake/switch/2
     maker: China
     type: switch
-    interval: 26
+    interval: 4500
 
 Unknown Device:
     topic: /unknown/dev/1
     maker: XXX
     type: unknown
-    interval: 4
+    interval: 1200
 
 Fake Switch:
     stopic: /fake/switch/3
     smaker: SSSSSS
     stype: switch
-    sinterval: 26
+    sinterval: 1200
