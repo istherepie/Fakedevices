@@ -10,6 +10,7 @@ import (
 	MQTT "github.com/eclipse/paho.mqtt.golang"
 )
 
+// Switch describes the telemetry of the device
 type Switch struct {
 	Identifier string
 	Maker      string

@@ -10,6 +10,7 @@ import (
 	MQTT "github.com/eclipse/paho.mqtt.golang"
 )
 
+// Meassure describes the telemetry of the device
 type Meassure struct {
 	Identifier string
 	Maker      string

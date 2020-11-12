@@ -7,6 +7,7 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+// Device is the schema of imported devices
 type Device struct {
 	Name     string
 	Topic    string `yaml:"topic"`
@@ -15,10 +16,12 @@ type Device struct {
 	Interval int    `yaml:"interval"`
 }
 
+// Valid checks that device fields are not empty
 func (d Device) Valid() bool {
 	return d.Name != "" && d.Topic != "" && d.Maker != "" && d.Type != "" && d.Interval != 0
 }
 
+// ImportDevices imports user devices defined in the yaml device file
 func ImportDevices(content []byte) ([]Device, error) {
 
 	var validDevices []Device
